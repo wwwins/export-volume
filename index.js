@@ -7,7 +7,17 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const term = require('terminal-kit').terminal;
 
+const DEBUG = process.env.DEBUG=='true' ? true : false;
+
 const cmd = 'docker run --rm -v #:/workspaces busybox tar -C /workspaces -zcf - . > #.tgz';
+
+let log = console.log;
+console.log = function () {
+  if (!DEBUG)
+    return;
+  log.call(console, new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+  log.apply(console, arguments);
+}
 
 async function doCmd(cmd, next) {
   const { stdout, stderr } = await exec(cmd);

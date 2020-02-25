@@ -4,7 +4,8 @@
   "description": "export docker volumes",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "DEBUG=false node index.js",
+    "debug": "DEBUG=true node index.js"
   },
   "author": "jacky.huang@isobar.com",
   "bin": {
