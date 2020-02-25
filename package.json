@@ -1,0 +1,17 @@
+{
+  "name": "export-volume",
+  "version": "1.0.0",
+  "description": "export docker volumes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "jacky.huang@isobar.com",
+  "bin": {
+    "export-volume": "index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "terminal-kit": "^1.33.15"
+  }
+}

@@ -1,2 +1,2 @@
 # export-volume
-Export a docker volume
+Exporting a docker volume
