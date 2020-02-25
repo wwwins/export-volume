@@ -7,10 +7,9 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const term = require('terminal-kit').terminal;
 
-const DEBUG = process.env.DEBUG=='true' ? true : false;
-
 const cmd = 'docker run --rm -v #:/workspaces busybox tar -C /workspaces -zcf - . > #.tgz';
 
+const DEBUG = process.env.DEBUG=='true' ? true : false;
 let log = console.log;
 console.log = function () {
   if (!DEBUG)
@@ -30,9 +29,9 @@ async function doCmd(cmd, next) {
 
 function getDockerVolumeName(next) {
   const process = spawn('docker', ['volume', 'ls', '-q']);
-  let bufs='';
-  let errs='';
-  let type=0;
+  let bufs = '';
+  let errs = '';
+  let type = 0;
 
   process.stdout.on('data', (data) => {
     bufs = bufs + Buffer.from(data).toString();
@@ -66,8 +65,8 @@ function show(items) {
         response.x ,
         response.y,
       );
+      term('輸出 %s.tgz\n', response.selectedText);
       doCmd(cmd.replace(/#/g,response.selectedText), () => term.processExit());
-      term('輸出中\n');
   })
 }
 
